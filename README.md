@@ -108,18 +108,19 @@ module jkf(j, k, q, clk, rst);
 
   always @(posedge clk) begin
     if (rst)
-      q = 1'b0;
+      q <= 1'b0;
     else begin
       case ({j, k})
-        2'b00: q = q;
-        2'b01: q = 1'b0;
-        2'b10: q = 1'b1;
-        2'b11: q = ~q;
-        default: q = 1'bx;
+        2'b00: q <= q;
+        2'b01: q <= 1'b0;
+        2'b10: q <= 1'b1;
+        2'b11: q <= ~q;
+        default: q <= 1'bx;
       endcase
     end
   end
 endmodule
+
 ```
 
 ### JK Flip-Flop Test bench 
@@ -176,11 +177,12 @@ module dff(clk, rst, din, dout);
     always @(posedge clk)
     begin
         if (rst)
-            dout = 1'b0;
+            dout <= 1'b0;
         else
-            dout = din;
+            dout <= din;
     end     
 endmodule
+
 ```
 
 ### D Flip-Flop Test bench 
@@ -233,13 +235,14 @@ module tff(clk, rst, tin, tout);
 
   always @(posedge clk) begin
     if (rst)
-      tout = 1'b0;
+      tout <= 1'b0;
     else if (tin)
-      tout = ~tout;
+      tout <= ~tout;
     else
-      tout = tout;
+      tout <= tout;
   end
 endmodule
+
 ```
 
 ### T Flip-Flop Test bench 
